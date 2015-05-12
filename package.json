@@ -1,0 +1,13 @@
+{
+  "name": "albers-core-module",
+  "version": "1.0.0",
+  "description": "Native module of albers-core",
+  "dependencies": {
+    "bindings": "^1.2.1",
+    "cmake-js": "*",
+    "nan": "^1.7.0"
+  },
+	"scripts": {
+    "install": "node ./node_modules/cmake-js/bin/cmake-js rebuild"
+  }
+}

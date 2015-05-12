@@ -53,12 +53,13 @@ add_subdirectory(albers)
 add_subdirectory(datamodel)
 add_subdirectory(examples)
 add_subdirectory(python)
+add_subdirectory(javascript)
 
 # The interesting stuff goes here
 # ===============================
 
 # Add all targets to the build-tree export set
-export(TARGETS albers albers-write albers-read
+export(TARGETS albers albers-write albers-read albers-read-adapter
   FILE "${PROJECT_BINARY_DIR}/albersCoreTargets.cmake")
 
 # Export the package for use from the build-tree
