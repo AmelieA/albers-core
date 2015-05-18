@@ -43,7 +43,7 @@ find_package(ROOT)
 
 # set up include-directories
 include_directories(
-  "${PROJECT_SOURCE_DIR}"   
+  "${PROJECT_SOURCE_DIR}"
   "${PROJECT_BINARY_DIR}"
   "${ROOT_INCLUDE_DIR}"
   )  
@@ -53,13 +53,12 @@ add_subdirectory(albers)
 add_subdirectory(datamodel)
 add_subdirectory(examples)
 add_subdirectory(python)
-add_subdirectory(javascript)
 
 # The interesting stuff goes here
 # ===============================
 
 # Add all targets to the build-tree export set
-export(TARGETS albers albers-write albers-read albers-read-adapter
+export(TARGETS albers albers-write albers-read
   FILE "${PROJECT_BINARY_DIR}/albersCoreTargets.cmake")
 
 # Export the package for use from the build-tree

@@ -8,11 +8,16 @@ project (addon)
 include_directories(${CMAKE_JS_INC})
 
 # Declare the location of the source files
-file(GLOB SOURCE_FILES "src/*/*.cc" "src/*/*.h" "src/*/*/*.cc" "src/*/*/*.h")
+file(GLOB SOURCE_FILES "src/*.cc")
 
 message(STATUS "SOURCE_FILES = ${SOURCE_FILES}")
 
-add_subdirectory (src)
+# build dependency
+# set up include-directories
+include_directories(
+  "${PROJECT_SOURCE_DIR}/deps/datamodel"
+  )
+add_subdirectory (deps)
 
 # This line will tell CMake that we're building a shared library
 # from the above source files
