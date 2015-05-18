@@ -1,4 +1,0 @@
-export ALBERS=$PWD/install
-export LD_LIBRARY_PATH=$ALBERS/lib:$LD_LIBRARY_PATH
-export PYTHONPATH=$ALBERS/python:$PYTHONPATH
-export PATH=$ALBERS/bin:$PATH
