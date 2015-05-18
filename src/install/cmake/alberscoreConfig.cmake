@@ -1,0 +1,16 @@
+# - Config file for the albers package
+# It defines the following variables
+#  ALBERSCORE_INCLUDE_DIRS - include directories for albers
+#  ALBERSCORE_LIBRARIES    - libraries to link against
+#  ALBERSCORE_EXECUTABLE   - the bar executable
+
+# Compute paths
+get_filename_component(ALBERSCORE_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(ALBERSCORE_INCLUDE_DIRS "${ALBERSCORE_CMAKE_DIR}/../include")
+
+# Our library dependencies (contains definitions for IMPORTED targets)
+include("${ALBERSCORE_CMAKE_DIR}/alberscoreTargets.cmake")
+
+# These are IMPORTED targets created by alberscoreTargets.cmake
+set(ALBERSCORE_LIBRARIES foo)
+set(ALBERSCORE_EXECUTABLE bar)
