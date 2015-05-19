@@ -1,7 +1,6 @@
 #include <node.h>
 #include <nan.h>
 #include <iostream>
-#include "../examples/read.cc"
 
 NAN_METHOD(returnValue) {
   NanScope();
