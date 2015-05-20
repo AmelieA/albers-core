@@ -10,8 +10,6 @@ include_directories(${CMAKE_JS_INC})
 # Declare the location of the source files
 file(GLOB SOURCE_FILES "src/*.cc")
 
-message(STATUS "SOURCE_FILES = ${SOURCE_FILES}")
-
 # build dependency
 # set up include-directories
 include_directories(

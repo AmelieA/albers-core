@@ -2,8 +2,6 @@ include_directories(
         ${CMAKE_SOURCE_DIR}/datamodel
 )
 
-message(STATUS "include_directories = ${${CMAKE_SOURCE_DIR}/datamodel}")
-
 add_executable(albers-write write.cc)
 add_executable(albers-read read.cc)
 
