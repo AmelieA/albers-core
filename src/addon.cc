@@ -1,3 +1,14 @@
+//// Data model
+//#include "datamodel/EventInfo.h"
+//#include "datamodel/EventInfoCollection.h"
+//#include "datamodel/Particle.h"
+//#include "datamodel/ParticleCollection.h"
+//
+//// albers specific includes
+//#include "albers/EventStore.h"
+//#include "albers/Registry.h"
+//#include "albers/Writer.h"
+
 #include <node.h>
 #include <nan.h>
 #include <iostream>
@@ -62,6 +73,33 @@ NAN_METHOD(getFactorial) {
   NanReturnValue(NanNew<v8::Number>(answer));
 }
 
+int writeMain(){
+  // gSystem->Load("libDataModelExample.so");
+
+  std::cout<<"start processing"<<std::endl;
+
+  albers::Registry   registry;
+  albers::EventStore store(&registry);
+  albers::Writer     writer("example.root", &registry);
+
+  unsigned nevents=10000;
+
+  EventInfoCollection& evinfocoll = store.create<EventInfoCollection>("EventInfo");
+  writer.registerForWrite<EventInfoCollection>("EventInfo");
+
+  for(unsigned i=0; i<nevents; ++i) {
+    processEvent(i, store, writer);
+  }
+
+  writer.finish();
+}
+
+NAN_METHOD(writeExamples) {
+    NanScope();
+    writeMain();
+    NanReturnUndefined();
+}
+
 void Init(v8::Handle<v8::Object> target) {
     target->Set(
           NanNew<v8::String>("getFactorial")
@@ -70,6 +108,10 @@ void Init(v8::Handle<v8::Object> target) {
       target->Set(
           NanNew<v8::String>("getProduct")
           , NanNew<v8::FunctionTemplate>(getProductAdapter)->GetFunction()
+      );
+      target->Set(
+          NanNew<v8::String>("writeExamples")
+          , NanNew<v8::FunctionTemplate>(writeExamples)->GetFunction()
       );
 }
 

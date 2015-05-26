@@ -19,14 +19,7 @@ On MacOS, before compiling or using this package, install ROOT and make sure you
     
 Compile:
 
-    mkdir build
-    cd build
-    cmake -DCMAKE_INSTALL_PREFIX=../install ..
-    make -j 4 install
-    cd ..
+    npm install
 
-Test:
-
-    ./install/bin/albers-write
-    ./install/bin/albers-read
+WARNING: this is not made to work alone but as a nodeJS module. Used here https://github.com/AmelieA/projetPFE
     
