@@ -15,10 +15,16 @@ file(GLOB SOURCE_FILES "src/*.cc")
 include_directories(
   "${PROJECT_SOURCE_DIR}/deps/datamodel"
   )
+add_subdirectory (deps)
+
+set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/deps/cmake)
+find_package(ROOT)
+
 include_directories(
   "${PROJECT_SOURCE_DIR}/deps"
+  "${PROJECT_BINARY_DIR}/deps"
+  "${ROOT_INCLUDE_DIR}"
   )
-add_subdirectory (deps)
 
 # This line will tell CMake that we're building a shared library
 # from the above source files

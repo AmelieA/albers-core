@@ -1,17 +1,8 @@
-//// Data model
-//#include "datamodel/EventInfo.h"
-//#include "datamodel/EventInfoCollection.h"
-//#include "datamodel/Particle.h"
-//#include "datamodel/ParticleCollection.h"
-//
-//// albers specific includes
-//#include "albers/EventStore.h"
-//#include "albers/Registry.h"
-//#include "albers/Writer.h"
-
 #include <node.h>
 #include <nan.h>
 #include <iostream>
+
+#include "../deps/examples/write.cc"
 
 struct Price{
     double euro;
@@ -73,7 +64,7 @@ NAN_METHOD(getFactorial) {
   NanReturnValue(NanNew<v8::Number>(answer));
 }
 
-int writeMain(){
+void writeMain(){
   // gSystem->Load("libDataModelExample.so");
 
   std::cout<<"start processing"<<std::endl;
