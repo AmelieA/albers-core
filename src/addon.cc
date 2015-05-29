@@ -2,7 +2,29 @@
 #include <nan.h>
 #include <iostream>
 
-#include "../deps/examples/write.cc"
+//// Data model
+//#include "datamodel/EventInfo.h"
+//#include "datamodel/EventInfoCollection.h"
+//#include "datamodel/Particle.h"
+//#include "datamodel/ParticleCollection.h"
+
+//// ROOT
+//#include "TLorentzVector.h"
+#include "TBranch.h"
+//#include "TFile.h"
+//#include "TTree.h"
+//#include "TSystem.h"
+
+// STL
+#include <iostream>
+#include <vector>
+
+// albers specific includes
+#include "albers/EventStore.h"
+#include "albers/Registry.h"
+//#include "albers/Writer.h"
+
+//#include "../deps/examples/write.cc"
 
 struct Price{
     double euro;
@@ -64,30 +86,30 @@ NAN_METHOD(getFactorial) {
   NanReturnValue(NanNew<v8::Number>(answer));
 }
 
-void writeMain(){
-  // gSystem->Load("libDataModelExample.so");
-
-  std::cout<<"start processing"<<std::endl;
-
-  albers::Registry   registry;
-  albers::EventStore store(&registry);
-  albers::Writer     writer("example.root", &registry);
-
-  unsigned nevents=10000;
-
-  EventInfoCollection& evinfocoll = store.create<EventInfoCollection>("EventInfo");
-  writer.registerForWrite<EventInfoCollection>("EventInfo");
-
-  for(unsigned i=0; i<nevents; ++i) {
-    processEvent(i, store, writer);
-  }
-
-  writer.finish();
-}
+//void writeMain(){
+//  // gSystem->Load("libDataModelExample.so");
+//
+//  std::cout<<"start processing"<<std::endl;
+//
+//  albers::Registry   registry;
+//  albers::EventStore store(&registry);
+//  albers::Writer     writer("example.root", &registry);
+//
+//  unsigned nevents=10000;
+//
+//  EventInfoCollection& evinfocoll = store.create<EventInfoCollection>("EventInfo");
+//  writer.registerForWrite<EventInfoCollection>("EventInfo");
+//
+//  for(unsigned i=0; i<nevents; ++i) {
+//    processEvent(i, store, writer);
+//  }
+//
+//  writer.finish();
+//}
 
 NAN_METHOD(writeExamples) {
     NanScope();
-    writeMain();
+//    writeMain();
     NanReturnUndefined();
 }
 
