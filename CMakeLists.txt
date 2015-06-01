@@ -3,6 +3,7 @@ cmake_minimum_required(VERSION 2.8)
 # Name of the project (will be the name of the plugin)
 project (addon)
 
+
 # Essential include files to build a node addon,
 # you should add this line in every CMake.js based project.
 include_directories(${CMAKE_JS_INC})
@@ -46,7 +47,7 @@ set(CPP11FLAGS "-std=c++11")
 if (${APPLE})
     set(CPP11FLAGS "-std=c++11\ -stdlib=libc++")
 endif()
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -DDROP_CGAL ${CPP11FLAGS} -Wall -Wextra -Wpedantic -Wno-unused-variable -Wno-unused-parameter")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -DDROP_CGAL ${CPP11FLAGS} -Wall -Wextra -Wpedantic -Wno-unused-variable -Wno-unused-parameter -Wl,-rpath,${ROOTSYS}'/lib/' -L/home/amelie/Desktop/root/lib/ -lCore")
 
 
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/deps/cmake)
@@ -64,6 +65,7 @@ include_directories(
 # Add all targets to the build-tree export set
 export(TARGETS albers albers-write albers-read
   FILE "${PROJECT_BINARY_DIR}/deps/albersCoreTargets.cmake")
+
 
 # Export the package for use from the build-tree
 # (this registers the build-tree with a global CMake-registry)
@@ -99,11 +101,6 @@ message(${INSTALL_CMAKE_DIR})
 
 #-------------- END Part of deps/CMakeLists.txt--------------
 
-#--------------Part of generate dictionary ?-------------------------
-ROOT_GENERATE_DICTIONARY(AlbersDict deps/albers/PyEventStore.h deps/albers/Registry.h deps/albers/CollectionBase.h LINKDEF deps/albers/LinkDef.h )
-ROOT_GENERATE_DICTIONARY(ExampleDict deps/datamodel/datamodel/*.h deps/datamodel/albers/PyEventStore.h LINKDEF deps/datamodel/LinkDef.h )
-
-#-----------------END Part of everything that look like root-----------------------------------
 
 # This line will tell CMake that we're building a shared library
 # from the above source files
@@ -117,3 +114,5 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PREFIX "" SUFFIX ".node")
 # you should add this line in every CMake.js based project.
 target_link_libraries(${PROJECT_NAME} ${CMAKE_JS_LIB})
 
+message("ROOTSYS")
+message(${ROOTSYS})
